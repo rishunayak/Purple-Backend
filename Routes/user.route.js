@@ -1,10 +1,10 @@
 const express=require("express")
-
 const bcrypt = require('bcrypt');
 const app=express.Router()
 const jwt = require('jsonwebtoken');
 const User = require("../Models/user.model");
 const authentication = require("../middleware/authentication");
+
 
 app.post("/register",async(req,res)=>
 {
