@@ -1,6 +1,6 @@
 const express=require("express")
 const app=express.Router()
-const authentication = require("../middleware/authentication");
+const authentication = require("../Middleware/authentication");
 const Order = require("../Models/order.model");
 
 app.use(authentication)
