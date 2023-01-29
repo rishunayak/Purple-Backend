@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../Models/user.model');
+const User = require("../Models/user.model");
 
 const admin=(req,res,next)=>
 {
@@ -14,8 +14,8 @@ const admin=(req,res,next)=>
         else
         {
             req.body.id=decorded.id  
-            const {isAdmin}=await User.findOne({_id:decorded.id})
-            if(isAdmin)
+            const data=await User.findOne({_id:decorded.id})
+            if(data.isAdmin)
             {
               next()
             }

@@ -68,7 +68,8 @@ app.post("/login",async(req,res)=>
         {
             bcrypt.compare(password,exist.password, function(err, result) {
                 if(result)
-                {
+                { 
+                    console.log(exist._id);
                     const token=jwt.sign({ id: exist._id }, 'auth');
                     res.send({token:token})
                    
