@@ -125,7 +125,7 @@ app.patch("/update/:id",async(req,res)=>
 
     try
     {
-        await User.findOneAndUpdate({_id:id.req.body},req.body)
+        await User.findOneAndUpdate({_id:req.body.id},req.body)
         res.send({msg:"Updated Successfully"})
     }
     catch(e)
