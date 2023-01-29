@@ -4,6 +4,7 @@ const app=express.Router()
 const jwt = require('jsonwebtoken');
 const User = require("../Models/user.model");
 const authentication = require("../Middleware/authentication");
+const admin = require("../Middleware/admin");
 
 
 app.post("/register",async(req,res)=>
@@ -107,6 +108,15 @@ app.get("/",async(req,res)=>
         res.send(e)
     }
 
+})
+
+
+app.use(admin)
+
+app.get("/all",async(req,res)=>
+{
+    const data=await User.find()
+    res.send(data)
 })
 
 
