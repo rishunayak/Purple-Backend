@@ -7,7 +7,7 @@ const userSchema=mongoose.Schema({
     address:String,
     mobile:Number,
     isAdmin:{type:Boolean,default:false},
-    date:{type:String,default:Date.now()}
+    date:{type:String,default:Date()}
 
 })
 
