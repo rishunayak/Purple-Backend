@@ -155,7 +155,7 @@ app.get("/user/:id",async(req,res)=>
 
     try
     {
-       const data=await Cart.findOne({id:req.params.id})
+       const data=await Cart.findOne({id:req.params.id}).populate("products.product")
        res.send(data)
     }
     catch(e)
