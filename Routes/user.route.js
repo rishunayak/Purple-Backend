@@ -121,11 +121,11 @@ app.get("/all",async(req,res)=>
 
 app.patch("/update/:id",async(req,res)=>
 {
-    
+    const id=req.params.id
 
     try
     {
-        await User.findOneAndUpdate({_id:req.body.id},{...req.body})
+        await User.findOneAndUpdate({_id:id},{...req.body})
         res.send({msg:"Updated Successfully"})
     }
     catch(e)
