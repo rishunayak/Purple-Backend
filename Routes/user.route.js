@@ -119,6 +119,25 @@ app.get("/all",async(req,res)=>
     res.send(data)
 })
 
+app.patch("/update/:id",async(req,res)=>
+{
+    
+
+  
+
+    try
+    {
+        await User.findByIdAndUpdate({_id:id},req.body)
+        res.send({msg:"Updated Successfully"})
+    }
+    catch(e)
+    {
+        res.send(e)
+    }
+    
+   
+
+})
 
 
 
