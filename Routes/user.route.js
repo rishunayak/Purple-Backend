@@ -123,11 +123,9 @@ app.patch("/update/:id",async(req,res)=>
 {
     
 
-  
-
     try
     {
-        await User.findByIdAndUpdate({_id:id},req.body)
+        await User.findByIdAndUpdate({_id:id.req.body},req.body)
         res.send({msg:"Updated Successfully"})
     }
     catch(e)
