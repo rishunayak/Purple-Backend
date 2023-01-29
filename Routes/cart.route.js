@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const authentication = require("../Middleware/authentication");
 const Cart = require("../Models/cart.model");
 const User = require("../Models/user.model");
+const admin = require("../Middleware/admin");
 
 app.use(authentication)
 
@@ -145,6 +146,22 @@ app.delete("/removeCart",async(req,res)=>
         res.send(e)
     }
     
+})
+
+app.use(admin)
+
+app.get("/user/:id",async(req,res)=>
+{
+
+    try
+    {
+       const data=await Cart.findOne({id:req.params.id})
+       res.send(data)
+    }
+    catch(e)
+    {
+        res.send(e)
+    }
 })
 
 

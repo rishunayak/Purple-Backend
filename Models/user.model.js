@@ -6,7 +6,7 @@ const userSchema=mongoose.Schema({
     password:{type:String,required:true},
     address:String,
     mobile:Number,
-    isAdmin:{type:Boolean},
+    isAdmin:{type:Boolean,default:false},
     date:{type:String,default:Date()}
 
 })
