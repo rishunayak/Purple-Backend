@@ -2,7 +2,7 @@ const express=require("express")
 const app=express.Router()
 const authentication = require("../Middleware/authentication");
 const Order = require("../Models/order.model");
-
+const admin = require("../Middleware/admin");
 app.use(authentication)
 
 app.get("/",async(req,res)=>
@@ -22,15 +22,15 @@ app.get("/",async(req,res)=>
 
 app.post("/done",async(req,res)=>
 {
-    const {id,product}=req.body
+    const {id,item}=req.body
 
     try
     {
         const exist=await Order.findOne({id:id})
         if(exist)
-        {console.log(exist)
-            exist.products=[...exist.products,...product];
-            console.log(exist)
+        {
+            exist.products=[...exist.products,...item];
+            
             try
             {
                 await Order.findOneAndUpdate({_id:exist._id},exist)
@@ -46,7 +46,7 @@ app.post("/done",async(req,res)=>
         {
             try
             {
-                await Order.create({id,product:[...product]})
+                await Order.create({id,products:item})
                 res.send({msg:"Order Placed Successfully"});
             }
             catch(e)
@@ -62,6 +62,22 @@ app.post("/done",async(req,res)=>
     }
     
    
+})
+
+
+app.use(admin)
+
+app.get("/singleUser/:id",async(req,res)=>
+{
+    try
+    {
+       const data=await Order.findOne({id:req.params.id}).populate("id")
+       res.send(data)
+    }
+    catch(e)
+    {
+        res.send(e)
+    }
 })
 
 module.exports=app
