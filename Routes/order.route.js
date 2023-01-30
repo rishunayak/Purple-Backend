@@ -80,4 +80,18 @@ app.get("/singleUser/:id",async(req,res)=>
     }
 })
 
+
+app.get("/all",async(req,res)=>
+{
+    try
+    {
+        const data=await Order.find()
+        res.send(data)
+    }
+    catch(e)
+    {
+        res.send(e)
+    }
+})
+
 module.exports=app
