@@ -96,14 +96,15 @@ app.post("/addToCart",async(req,res)=>
 })
 
 
-app.delete("/delete",async(req,res)=>
+app.patch("/delete",async(req,res)=>
 {
-    
-    const {id,productId}=req.body
+   
+    const id=req.body.id
     try
     {
-        await Cart.updateOne({id,id},{$pull:{products:{_id:productId}}})
+        await Cart.updateOne({id:id},{$pull:{products:{_id:req.body.productId}}}) 
         res.send({msg:"Delete Successully"})
+        
         
     }
     catch(error)
@@ -117,16 +118,17 @@ app.delete("/delete",async(req,res)=>
 
 app.patch("/update",async(req,res)=>
 {
-    
+     
     const {id,quantity,productId}=req.body
     try
     {
         await Cart.updateOne({id:id,"products._id":productId},{$set:{"products.$.quantity":quantity}}) 
         res.send({msg:"Updated Successully"})
-        
+       
     }
     catch(error)
     {
+       
         res.send(error)
     }
     

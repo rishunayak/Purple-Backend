@@ -8,6 +8,7 @@ const authentication=(req,res,next)=>
     {
         if(err)
         {
+            console.log(err)
             res.send("Login Frist")
         }
         else
