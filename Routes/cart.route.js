@@ -98,8 +98,9 @@ app.post("/addToCart",async(req,res)=>
 
 app.patch("/delete",async(req,res)=>
 {
-   
+   //console.log(req.body)
     const id=req.body.id
+
     try
     {
         await Cart.updateOne({id:id},{$pull:{products:{_id:req.body.productId}}}) 
