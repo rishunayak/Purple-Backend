@@ -23,7 +23,7 @@ app.get("/",async(req,res)=>
 app.post("/done",async(req,res)=>
 {
     const {id,item}=req.body
-
+    console.log(item)
     try
     {
         const exist=await Order.findOne({id:id})

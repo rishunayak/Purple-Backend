@@ -136,12 +136,13 @@ app.patch("/update",async(req,res)=>
 
 })
 
-app.delete("/removeCart",async(req,res)=>
+app.patch("/removeCart",async(req,res)=>
 {
+    console.log(req.body)
     try
     {
         
-        await Cart.findOneAndDelete({id:req.body.id})
+        await Cart.findOneAndDelete({_id:req.body.cartId})
         res.send({msg:"Deleted Successfull"})
     }
     catch(e)
@@ -153,7 +154,7 @@ app.delete("/removeCart",async(req,res)=>
 
 app.use(admin)
 
-app.get("/user/:id",async(req,res)=>
+app.get("/user/:id",async(req,res)=> 
 {
 
     try
